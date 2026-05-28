@@ -1,0 +1,72 @@
+usuarios = []
+usuario_logado = None
+
+while True:
+
+    print('\n=== BANCO BRASILEIRO ===')
+    print('1 - Criar conta')
+    print('2 - Login')
+    print('3 - Sair')
+
+    opcao = input('Selecione: ')
+
+    if opcao == '3':
+        print('Saindo...')
+        break
+
+    elif opcao == '1':
+
+        nome = input('Nome: ')
+        email = input('Email: ')
+        senha = input('Senha: ')
+
+        usuario = {
+            'nome': nome,
+            'email': email,
+            'senha': senha,
+            'saldo': 0
+        }
+
+        usuarios.append(usuario)
+
+        print('Conta criada!')
+
+    elif opcao == '2':
+
+        email = input('Email: ')
+        senha = input('Senha: ')
+
+        login_sucesso = False
+
+        for usuario in usuarios:
+
+            if usuario['email'] == email and usuario['senha'] == senha:
+
+                usuario_logado = usuario
+
+                print(f'Bem vindo {usuario["nome"]}!')
+
+                while True:
+                    print('\n=== SUA CONTA ===')
+                    print('1- Ver saldo')
+                    print('2- Depositar')
+                    print('3- Sacar')
+                    print('4- Logout')
+
+                    opcao_conta = input('selecione: ')
+
+                    if opcao_conta == '4':
+                        print('Logout realizado!')
+                        break
+                    
+                    elif opcao_conta == '1':
+                        
+                        print(f'Seu saldo é R${usuario_logado["saldo"]}')
+                        
+                    
+
+
+                login_sucesso = True
+
+        if not login_sucesso:
+            print('Email ou senha incorretos')
