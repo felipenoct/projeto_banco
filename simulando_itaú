@@ -47,24 +47,61 @@ while True:
                 print(f'Bem vindo {usuario["nome"]}!')
 
                 while True:
-                    print('\n=== SUA CONTA ===')
-                    print('1- Ver saldo')
-                    print('2- Depositar')
-                    print('3- Sacar')
-                    print('4- Logout')
 
-                    opcao_conta = input('selecione: ')
+                    print('\n=== SUA CONTA ===')
+                    print('1 - Ver saldo')
+                    print('2 - Depositar')
+                    print('3 - Sacar')
+                    print('4 - Logout')
+
+                    opcao_conta = input('Selecione: ')
 
                     if opcao_conta == '4':
                         print('Logout realizado!')
                         break
-                    
-                    elif opcao_conta == '1':
-                        
-                        print(f'Seu saldo é R${usuario_logado["saldo"]}')
-                        
-                    
 
+                    elif opcao_conta == '1':
+
+                        print(f'Seu saldo é R${usuario_logado["saldo"]}')
+
+                    elif opcao_conta == '2':
+
+                        try:
+
+                            valor = float(input('Valor do depósito: '))
+
+                            if valor <= 0:
+                                print('Valor inválido!')
+
+                            else:
+
+                                usuario_logado['saldo'] += valor
+
+                                print('Depósito realizado!')
+
+                        except:
+                            print('Digite apenas números!')
+
+                    elif opcao_conta == '3':
+
+                        try:
+
+                            valor = float(input('Valor do saque: '))
+
+                            if valor <= 0:
+                                print('Valor inválido!')
+
+                            elif valor > usuario_logado['saldo']:
+                                print('Saldo insuficiente!')
+
+                            else:
+
+                                usuario_logado['saldo'] -= valor
+
+                                print('Saque realizado!')
+
+                        except:
+                            print('Digite apenas números!')
 
                 login_sucesso = True
 
